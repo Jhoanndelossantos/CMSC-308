@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class JavaExample
+{
+    public static void main(String args[])
+    {
+
+
+
+
+        int marks[] = new int[4];
+        int i;
+        float total=0, avg;
+        Scanner scanner = new Scanner(System.in);
+		
+        
+        for(i=0; i<4; i++) { 
+           System.out.print("Enter Marks of Subject"+(i+1)+":");
+           marks[i] = scanner.nextInt();
+           total = total + marks[i];
+        }
+        scanner.close();
+        //Calculating average here
+        avg = total/4;
+        System.out.print("The student Grade is: ");
+        if(avg>=100)
+        {
+            System.out.print("invalid Grade");
+        }
+        else if(avg>=98 && avg<100)
+        {
+           System.out.print("with highest honor");
+        } 
+        else if(avg>=95 && avg<97.99)
+        {
+            System.out.print("with High Honor");
+        }
+        else if(avg>=90 && avg<94.99)
+        {
+            System.out.print("With Honor");
+        }
+        else if (avg>=75 && avg<89.99)
+        {
+            System.out.print(Passed);
+        }
+          else
+
+        {
+              System.out.print(Failed);                   
+        }
+
+          
+                                       
+    }
+}
