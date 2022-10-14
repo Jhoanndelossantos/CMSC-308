@@ -1,0 +1,29 @@
+import java.util.*;
+
+ // Compiler version JDK 11.0.2
+
+ class Dcoder
+ {
+   public static void main(String args[])
+   { 
+     int [] ar = {3,6,9,12,15};
+     System.out.println("The numbers below are the even numbers in this array");
+     for(int e : ar)
+     {
+       if (e%2 ==0)
+       {
+         System.out.println(e+" ");
+       }
+     }
+    
+    System.out.println("");
+    System.out.println("The numbers  below  are the ods numbers  in this array");
+    for(int e : ar)
+    {
+      if (e%2!=0)
+      {
+        System.out.println(e+" ");
+      }
+    }
+   }
+ }
