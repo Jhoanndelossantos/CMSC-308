@@ -1,0 +1,34 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+ // Compiler version 4.0, .NET Framework 4.5
+
+
+ namespace Dcoder
+ {
+   internal class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Input values for first hash set: ");
+            Input(out HashSet<int> firstHashSet);
+            Console.WriteLine("Input values for second hash set: ");
+            Input(out HashSet<int> secondHashSet);
+            Console.WriteLine($"UNION result: {string.Join(" ", firstHashSet.Union(secondHashSet).ToArray())}");
+            Console.WriteLine($"INTERSECTION result: {string.Join(" ", firstHashSet.Intersect(secondHashSet).ToArray())}");
+
+
+            Console.ReadLine();
+        }
+        public static void Input(out HashSet<int> collection)
+        {
+            collection = new HashSet<int>();
+            for (int i = 0; i < 5; i++)
+            {
+                Console.Write($"{i + 1}. = ");
+                collection.Add(int.Parse(Console.ReadLine()));
+            }
+        }
+    }
+ }
