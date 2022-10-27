@@ -1,0 +1,29 @@
+#include <iostream>
+#include <string>
+
+std::string replaceString(std::string str, std::string rep, std::string replacement){
+    size_t position;
+    while ((position = str.find(rep)) != std::string::npos) {
+        str.replace(position, 1, replacement);
+    }
+    return str;
+}
+
+int main()
+{
+    std::string str = "234189";
+
+    str = replaceString(str, "1", "X");
+    str = replaceString(str, "2", "C");
+    str = replaceString(str, "3", "O");
+    str = replaceString(str, "4", "M");
+    str = replaceString(str, "5", "P");
+    str = replaceString(str, "6", "U");
+    str = replaceString(str, "7", "T");
+    str = replaceString(str, "8", "E");
+    str = replaceString(str, "9", "R");
+    str = replaceString(str, "0", "S");
+
+    std::cout << "Result: " << str;
+    return 0;
+}
