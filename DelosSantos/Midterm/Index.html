@@ -1,0 +1,125 @@
+import java.util.Scanner;
+
+public class Main {
+
+  static int[] weekends = { 6, 7, 13, 14, 20, 21, 27, 28 };
+
+  //check is given day is weekend
+  public static boolean isWeekend(int day) {
+    return isPresent(weekends, day);
+  }
+
+  //this method counts the total holiday including weekends base on the givens days
+  public static int countHoliday(int[] days) {
+    int holiday = 0;
+
+    for (int i = 0; i < days.length; i++) {
+      if (!isWeekend(days[i])) {
+        holiday++;
+      }
+    }
+
+    for (int day = 1; day <= 30; day++) {
+      if (isWeekend(day)) {
+        holiday++;
+      }
+    }
+
+    return holiday;
+  }
+
+  //return the the all holidays including the weekends
+  public static String getHolidays(int[] days) {
+    String holidays = "";
+
+    int[] totalHoliday = new int[countHoliday(days)];
+
+    int index = 0;
+
+    for (int i = 1; i < 30; i++) {
+      if (isPresent(days, i)) {
+        totalHoliday[index] = i;
+        index++;
+        continue;
+      }
+
+      if (isWeekend(i)) {
+        totalHoliday[index] = i;
+        index++;
+      }
+    }
+
+    for (int i = 0; i < totalHoliday.length; i++) {
+      holidays = appendString(holidays, totalHoliday[i] + "");
+    }
+
+    holidays += ')';
+
+    return "(" + holidays;
+  }
+
+  //check if day is present in days.
+  //check if a item is present in an array
+  public static boolean isPresent(int[] days, int day) {
+    for (int i = 0; i < days.length; i++) {
+      if (days[i] == day) return true;
+    }
+    return false;
+  }
+
+  //append data to the value
+  public static String appendString(String value, String data) {
+    if (value.length() > 0) return value + "," + data;
+    return value + data;
+  }
+
+  //entry point of the appllication
+  public static void main(String[] args) {
+    //input handler
+    Scanner input = new Scanner(System.in);
+
+    //ask user for total test case
+    System.out.print("Number of Test Cases: ");
+    int testCase = input.nextInt();
+
+    //create an array to handle result for each test case
+    int[] totalHolidayCount = new int[testCase];
+    String[] totalHolidays = new String[testCase];
+
+    //loop through alll the test case
+    for (int testCaseNumber = 0; testCaseNumber < testCase; testCaseNumber++) {
+      //ask the user to input number of holidays
+      System.out.print("Number of Holidays: ");
+      int holiday = input.nextInt();
+
+      //create array to store days of holiday
+      int[] holidays = new int[holiday];
+
+      //ask the user to input days of holiday base on the given number of holiday
+      System.out.print("Day of Holidays: ");
+      for (int holidayCount = 0; holidayCount < holiday; holidayCount++) {
+        //ask the user input day
+        holidays[holidayCount] = input.nextInt();
+      }
+
+      //call a method to count the holiday including the weekend and store it
+      //store it on an array base on number test case
+      totalHolidayCount[testCaseNumber] = countHoliday(holidays);
+
+      //call a method to get all holidays in String value
+      //store it on an array base on number test case
+      totalHolidays[testCaseNumber] = getHolidays(holidays);
+    }
+
+    //loop through each test cases result and display the ouput
+    for (int i = 0; i < testCase; i++) {
+      System.out.println(
+        "Number of Holidays for Test Case " +
+        (i + 1) +
+        ": " +
+        totalHolidayCount[i] +
+        totalHolidays[i]
+      );
+    }
+  }
+}
