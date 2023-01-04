@@ -1,0 +1,84 @@
+import java.util.Scanner;
+
+abstract class Shape {
+    // abstraction: the abstract method area() is not implemented in the Shape class
+    // but is implemented in its subclasses (Rectangle and Circle)
+    public abstract double area();
+}
+
+class Rectangle extends Shape {
+    // encapsulation: the instance variables length and width are private
+    // and can only be accessed through the getLength() and getWidth() methods
+    private double length;
+    private double width;
+
+    public Rectangle(double length, double width) {
+        this.length = length;
+        this.width = width;
+    }
+
+    public double getLength() {
+        return length;
+    }
+
+    public double getWidth() {
+        return width;
+    }
+
+    // inheritance: the Rectangle class extends the Shape class and
+    // implements the abstract area() method
+    @Override
+    public double area() {
+        return length * width;
+    }
+}
+
+class Circle extends Shape {
+    // encapsulation: the instance variable radius is private
+    // and can only be accessed through the getRadius() method
+    private double radius;
+
+    public Circle(double radius) {
+        this.radius = radius;
+    }
+
+    public double getRadius() {
+        return radius;
+    }
+
+    // inheritance: the Circle class extends the Shape class and
+    // implements the abstract area() method
+    @Override
+    public double area() {
+        return Math.PI * radius * radius;
+    }
+}
+
+class Main {
+    // polymorphism: the calculateArea() method can accept any object that is a subclass of Shape
+    public static double calculateArea(Shape shape) {
+        return shape.area();
+    }
+
+        public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the length of the rectangle: ");
+        double length = scanner.nextDouble();
+
+        System.out.print("Enter the width of the rectangle: ");
+        double width = scanner.nextDouble();
+
+        Rectangle rectangle = new Rectangle(length, width); //instance of Rectangle
+
+        System.out.print("Enter the radius of the circle: ");
+        double radius = scanner.nextDouble();
+
+        Circle circle = new Circle(radius);  //instance of Circle
+
+        System.out.println("The area of the rectangle is: " + calculateArea(rectangle));
+        System.out.println("The area of the circle is: " + calculateArea(circle));
+    }
+}
+
+
